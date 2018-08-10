@@ -76,4 +76,4 @@ EOF
 nohup ssserver -c $CONFIG > shadowsocks.log &
 
 # 提示信息
-printf "shadowsocks安装好了"公有IP  : $(curl ifconfig.me)\n配置文件: $CONFIG \n$(cat $CONFIG)"
+printf "shadowsocks安装好了 \n 公有IP  : $(curl ifconfig.me)\n 配置文件: $CONFIG \n $(cat $CONFIG)"
