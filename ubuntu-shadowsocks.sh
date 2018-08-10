@@ -1,12 +1,13 @@
 #!/bin/bash
 
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
 # 安装依赖和shadowsocks
 sudo apt-get update
 sudo apt-get -y install python-gevent
 sudo apt-get -y install python-m2crypto
 sudo apt-get -y install python-pip
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
 sudo pip install shadowsocks
 
 # 设置密码，端口，端口个数
