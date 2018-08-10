@@ -7,27 +7,51 @@ sudo apt-get -y install python-m2crypto
 sudo apt-get -y install python-pip
 sudo pip install shadowsocks
 
-# 设置密码
-read -p "请设置shadowsocks的密码(默认: 123): " password
-if [ "$password" = "" ]; then
-    password="123"
-fi
+# 设置密码，端口，端口个数
+read -p "请设置shadowsocks的密码(默认: 123):  " password 
+read -p "请设置shadowsocks的起始端口(默认: 8000): " port 
+read -p "请设置shadowsocks的端口个数(默认: 10): " count 
+
+if [ "$password" == "" ]; then 
+	password="123"
+fi 
+if [ "$port" == "" ]; then 
+	port="8000"
+fi 
+if [ "$count" == "" ]; then 
+	count="10"
+fi 
+
+str_port_info="{"
+
+while [ $count -ge 1 ]
+do
+	str_item=""
+	if [ 1 -eq $count ]
+	then 
+		str_item+="\"${port}\":"
+		str_item+="\"${password}\""
+	else 
+		str_item+="\"${port}\":"
+		str_item+="\"${password}\""
+		str_item+=","
+	fi 
+	str_port_info=$str_port_info$str_item
+	
+	((port++))
+	((count--))
+done
+
+str_port_info=$str_port_info"}"
+
+echo $str_port_info
 
 # 配置文件 /etc/shadowsocks.json
 CONFIG=/etc/shadowsocks.json
 sudo dd of=$CONFIG << EOF
 {
 "server":"0.0.0.0",
-"port_password": {
-"8331": "${password}",
-"8332": "${password}",
-"8333": "${password}",
-"8334": "${password}",
-"8335": "${password}",
-"8336": "${password}",
-"8337": "${password}",
-"8338": "${password}",
-"8339": "${password}",},
+"port_password": $str_port_info,
 "local_address": "127.0.0.1",
 "local_port":1080,
 "timeout":300,
