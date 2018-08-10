@@ -17,12 +17,22 @@ fi
 CONFIG=/etc/shadowsocks.json
 sudo dd of=$CONFIG << EOF
 {
-    "server"        : "0.0.0.0",
-    "server_port"   : 8388,
-    "local_port"    : 1080,
-    "password"      : "${password}",
-    "timeout"       : 600,
-    "method"        : "aes-256-cfb"
+"server":"0.0.0.0",
+"port_password": {
+"8331": "${password}",
+"8332": "${password}",
+"8333": "${password}",
+"8334": "${password}",
+"8335": "${password}",
+"8336": "${password}",
+"8337": "${password}",
+"8338": "${password}",
+"8339": "${password}",},
+"local_address": "127.0.0.1",
+"local_port":1080,
+"timeout":300,
+"method":"aes-256-cfb",
+"fast_open": true
 }
 EOF
 
