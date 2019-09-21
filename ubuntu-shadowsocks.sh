@@ -10,6 +10,14 @@ sudo apt-get -y install python-m2crypto
 sudo apt-get -y install python-pip
 sudo pip install shadowsocks
 
+apt-get install build-essential
+wget https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-1.0.11.tar.gz
+tar xvf libsodium-1.0.11.tar.gz
+cd libsodium-1.0.11
+./configure && make && make install
+ldconfig
+cd ..
+
 # 设置密码，端口，端口个数
 read -p "请设置shadowsocks的密码(默认: 123):  " password 
 read -p "请设置shadowsocks的起始端口(默认: 8000): " port 
