@@ -66,8 +66,8 @@ sudo dd of=$CONFIG << EOF
 "local_address": "127.0.0.1",
 "local_port":1080,
 "timeout":300,
-"method":"aes-256-cfb",
-"fast_open": true
+"method":"chacha20",
+"fast_open": false
 }
 EOF
 
